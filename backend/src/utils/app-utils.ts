@@ -1,5 +1,3 @@
-import { appendFileSync } from "fs";
-
 export function responseMessage (
     message: string | null = null,
     body: any = null
@@ -19,6 +17,6 @@ export function isAmountValid (amount: number): boolean {
 }
 
 export function isValidToken (token: string): boolean {
-    if (!token || token.length != 6) return false;
+    if (token.length != 8) return false;
     else return true;
 }

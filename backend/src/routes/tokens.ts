@@ -97,7 +97,7 @@ export async function loadToken (req: Request, res: Response) {
         data: token,
     });
 
-    await prisma.meter.update({
+    meter = await prisma.meter.update({
         where: {
             id: token.meterId,
         },
