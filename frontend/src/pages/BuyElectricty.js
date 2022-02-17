@@ -33,7 +33,7 @@ export default function BuyElectricity() {
             <Input type="number" placeholder="Meter number" data={{ st: meter_number, sts: setMeterNumber }}/>
             <Input type="number" placeholder="Amount" data={{ st: amount, sts: setAmount }}/>
             
-            <Button title="Click me" onClick={buyElectricty}/>
+            <Button title="Buy" onClick={buyElectricty}/>
         </div>
     </div>)
 }

@@ -36,7 +36,7 @@ export default function LoadElectricty() {
         <div>
             <Input type="text" placeholder="Token" data={{ st: token, sts: setToken }}/>
             
-            <Button title="Click me" onClick={loadElectricty}/>
+            <Button title="Load" onClick={loadElectricty}/>
         </div>
     </div>)
 }

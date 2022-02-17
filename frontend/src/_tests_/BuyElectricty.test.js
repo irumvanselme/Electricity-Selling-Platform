@@ -7,5 +7,9 @@ test('Buy Electricty page', () => {
     </>);
     
     const linkElement = screen.getByText(/Buy Electricty/i);
+    
+    console.log(linkElement)
     expect(linkElement).toBeInTheDocument();
 });
+
+
