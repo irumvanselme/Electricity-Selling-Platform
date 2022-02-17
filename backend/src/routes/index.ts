@@ -13,6 +13,6 @@ export default function routes(app: Express) {
 	);
 
 	app.get("/api/meters", (req, res) => getAllMeters(req, res));
-	app.get("/api/token/buy", (req, res) => buyToken(req, res));
-	app.get("/api/token/load", (req, res) => loadToken(req, res));
+	app.post("/api/tokens/buy", (req, res) => buyToken(req, res));
+	app.post("/api/tokens/load", (req, res) => loadToken(req, res));
 }
