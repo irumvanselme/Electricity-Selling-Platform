@@ -1,8 +1,8 @@
-import faker from "@faker-js/faker";
 import { request } from "undici";
 import { createTestServer } from "../../utils/test-utils";
 
 const { serverURL, prisma } = createTestServer();
+
 
 const tokenStructor = {
     id: expect.any(Number),
@@ -47,6 +47,30 @@ describe("Token API", () => {
             });
 
             expect(statusCode).toBe(201)
+        })
+    });
+
+    describe('Load token', function () {
+        it("Should load the token", async () => {
+            let token = await prisma.electricyToken.findFirst({
+                where: {
+                    status: "VALID"
+                }
+            });
+
+            if (!token) return;
+
+            const { statusCode, body } = await request(`${serverURL}/api/tokens/load`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token: token.token
+                }),
+            });
+
+            expect(statusCode).toEqual(200)
         })
     });
 
