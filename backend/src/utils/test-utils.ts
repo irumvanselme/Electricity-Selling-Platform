@@ -11,9 +11,7 @@ export const createTestServer = () => {
   };
 
   beforeAll(async () => {
-    const instance = await server.listen({ port: 8003 });
-
-    internalConfig.server = instance;
+    internalConfig.server = await server.listen({ port: 8003 });
 
     await prisma.$connect();
   });

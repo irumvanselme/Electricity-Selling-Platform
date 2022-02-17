@@ -57,21 +57,21 @@ const posts = [
 	},
 ];
 
-async function main() {
-	for (const user of users) {
-		await prisma.user.create({ data: user });
-	}
+// async function main() {
+// 	for (const user of users) {
+// 		await prisma.user.create({ data: user });
+// 	}
 
-	//  for (const post of posts) {
-	//     await prisma.post.create({data: post})
-	//  }
-}
+// 	//  for (const post of posts) {
+// 	//     await prisma.post.create({data: post})
+// 	//  }
+// }
 
-main()
-	.catch((e) => {
-		console.log(e);
-		process.exit(1);
-	})
-	.finally(() => {
-		prisma.$disconnect();
-	});
+// main()
+// 	.catch((e) => {
+// 		console.log(e);
+// 		process.exit(1);
+// 	})
+// 	.finally(() => {
+// 		prisma.$disconnect();
+// 	});
