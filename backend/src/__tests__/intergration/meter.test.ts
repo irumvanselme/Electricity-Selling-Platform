@@ -13,8 +13,10 @@ const meterStructure = {
 beforeAll(async () => {
     await prisma.meter.create({
         data: {
-            number: "103434",
-            days: 10
+            id: 200,
+            number: (Math.floor(Math.random() * (999999 - 100000)) +
+                100000).toString(),
+            days: 0,
         },
     });
 

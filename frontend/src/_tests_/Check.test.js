@@ -16,13 +16,13 @@ test("Check Electricty Passes", () => {
         <Check/>
     </>);
     
-    const inputElement = screen.getByTestId("meter_number_input")
+    const inputElement = screen.getByTitle(/meter_number_input/i)
     inputElement.value = "1000"
     
-    const buttonElement = screen.getByText("Click to Check")
+    const buttonElement = screen.getByText(/Click to Check/i)
     buttonElement.click()
     
-    const errorMessage = screen.getByTitle("Error")
+    const errorMessage = screen.getByTitle(/Error/i)
     
     expect(errorMessage).toBeInTheDocument();
 })

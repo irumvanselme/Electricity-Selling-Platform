@@ -29,7 +29,7 @@ export default function Check() {
         {error !== "" && <div title="Error" className="py-10 text-red-500 w-[400px]">{error}</div>}
         {isSuccess && <div className="py-10 text-lg text-green-500 w-[400px]">Success you have electirity for {days} days</div>}
         <div>
-            <Input type="string" placeholder="Meter number" id="meter_number_input" data={{ st: meter_number, sts: setMeterNumber }}/>
+            <Input type="string" placeholder="Meter number" title="meter_number_input" data={{ st: meter_number, sts: setMeterNumber }}/>
             
             <Button title="Click to Check" onClick={checkElectricty}/>
         </div>
