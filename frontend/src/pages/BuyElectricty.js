@@ -8,13 +8,11 @@ export default function BuyElectricity() {
     const [ amount, setAmount ] = useState(0)
     const [ error, setErorr ] = useState("")
     const [ isSuccess, setIsSucess ] = useState(false)
-    const [token, setToken] = useState()
+    const [ token, setToken ] = useState()
     
     const buyElectricty = async () => {
         try {
-            let { data } = await axios.post("http://localhost:8001/api/tokens/buy",
-                { meter_number, amount }
-            )
+            let { data } = await axios.post("http://localhost:8001/api/tokens/buy", { meter_number, amount })
             
             setErorr("")
             setIsSucess(true)
@@ -29,7 +27,8 @@ export default function BuyElectricity() {
     return (<div>
         <h1 className="text-3xl font-medium">Buy Electricty</h1>
         {error !== "" && <div className="py-10 text-red-500 w-[400px]">{error}</div>}
-        {isSuccess && <div className="py-10 text-lg text-green-500">Sucessfully buyed electricity with token :{token} ..</div>}
+        {isSuccess &&
+            <div className="py-10 text-lg text-green-500 w-[400px]">Sucessfully Token bought :{token} ..</div>}
         <div>
             <Input type="number" placeholder="Meter number" data={{ st: meter_number, sts: setMeterNumber }}/>
             <Input type="number" placeholder="Amount" data={{ st: amount, sts: setAmount }}/>

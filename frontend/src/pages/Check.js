@@ -26,8 +26,8 @@ export default function Check() {
     
     return (<div>
         <h1 className="text-3xl font-medium">Check Electricty</h1>
-        {error !== "" && <div className="py-10 text-red-500">{error}</div>}
-        {isSuccess && <div className="py-10 text-lg text-green-500">Success you have electirity for {days} days</div>}
+        {error !== "" && <div className="py-10 text-red-500 w-[400px]">{error}</div>}
+        {isSuccess && <div className="py-10 text-lg text-green-500 w-[400px]">Success you have electirity for {days} days</div>}
         <div>
             <Input type="string" placeholder="Meter number" data={{ st: meter_number, sts: setMeterNumber }}/>
             
