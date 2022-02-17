@@ -24,16 +24,18 @@ export default function BuyElectricity() {
         }
     }
     
-    return (<div>
-        <h1 className="text-3xl font-medium">Buy Electricty</h1>
-        {error !== "" && <div className="py-10 text-red-500 w-[400px]">{error}</div>}
-        {isSuccess &&
-            <div className="py-10 text-lg text-green-500 w-[400px]">Sucessfully Token bought :{token} ..</div>}
+    return (
         <div>
-            <Input type="number" placeholder="Meter number" data={{ st: meter_number, sts: setMeterNumber }}/>
-            <Input type="number" placeholder="Amount" data={{ st: amount, sts: setAmount }}/>
-            
-            <Button title="Buy" onClick={buyElectricty}/>
+            <h1 className="text-3xl font-medium" id="_buy_electricity_page">Buy Electricty</h1>
+            {error !== "" && <div className="py-10 text-red-500 w-[400px]" id="ErrorMessage">{error}</div>}
+            {isSuccess &&
+                <div className="py-10 text-lg text-green-500 w-[400px]" id="SuccessMessage">Sucessfully Token bought :{token} ..</div>}
+            <div>
+                <Input type="number" placeholder="Meter_number" data={{ st: meter_number, sts: setMeterNumber }}/>
+                <Input type="number" placeholder="Amount" data={{ st: amount, sts: setAmount }}/>
+                
+                <Button action="buyElectricity" title="Buy" onClick={buyElectricty}/>
+            </div>
         </div>
-    </div>)
+    )
 }

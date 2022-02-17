@@ -28,15 +28,18 @@ export default function LoadElectricty() {
     }
     
     
-    return (<div id="_load_balance_page">
-        <h1 className="text-3xl font-medium">Load Electricty</h1>
-        {error !== "" && <div id="ErrorMessage" className="py-10 text-red-500 w-[400px]">{error}</div>}
-        {isSuccess && <div className="py-10 text-lg text-green-500 w-[400px]" id="SuccessMessage">Sucess: {response?.token?.days} days added now. You
-            have {response?.meter?.days} days remaining :{token} ..</div>}
-        <div>
-            <Input type="text" placeholder="Token" data={{ st: token, sts: setToken }}/>
-            
-            <Button action="loadElectricty" title="Load" onClick={loadElectricty}/>
+    return (
+        <div id="_load_balance_page">
+            <h1 className="text-3xl font-medium">Load Electricty</h1>
+            {error !== "" && <div id="ErrorMessage" className="py-10 text-red-500 w-[400px]">{error}</div>}
+            {isSuccess && <div className="py-10 text-lg text-green-500 w-[400px]"
+                               id="SuccessMessage">Sucess: {response?.token?.days} days added now. You
+                have {response?.meter?.days} days remaining :{token} ..</div>}
+            <div>
+                <Input type="text" placeholder="Token" data={{ st: token, sts: setToken }}/>
+                
+                <Button action="loadElectricty" title="Load" onClick={loadElectricty}/>
+            </div>
         </div>
-    </div>)
+    )
 }
