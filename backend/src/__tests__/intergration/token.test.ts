@@ -4,7 +4,7 @@ import { createTestServer } from "../../utils/test-utils";
 const { serverURL, prisma } = createTestServer();
 
 
-const tokenStructor = {
+const tokenStructure = {
     id: expect.any(Number),
     meterId: expect.any(Number),
     token: expect.any(String),
@@ -28,20 +28,56 @@ describe("Token API", () => {
             expect(statusCode).toBe(200);
 
             for (const tokens of respData.body) {
-                expect(tokens).toMatchObject(tokenStructor);
+                expect(tokens).toMatchObject(tokenStructure);
             }
         });
     });
 
-    describe('By a token', function () {
-        it("Should buy the token", async () => {
+    describe('GET /api/tokens/buy: buys token', function () {
+        it("Should fail on invalid meter number", async () => {
             const { statusCode, body } = await request(`${serverURL}/api/tokens/buy`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    meter_number: getToken(),
+                    meter_number: "123",
+                    amount: 1000
+                }),
+            });
+
+            let res = await body.json()
+
+            expect(statusCode).toBe(400)
+            expect(res.message).toBe("invalid meter, only 6 digits accepted")
+        })
+
+        it("should fail on invalid amount", async () => {
+            const { statusCode, body } = await request(`${serverURL}/api/tokens/buy`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    meter_number: getMeterNumber(),
+                    amount: 1
+                }),
+            });
+
+            let res = await body.json()
+
+            expect(statusCode).toBe(400)
+            expect(res.message).toBe("invalid amount, only multiples of 100 not greater than 182,500 is accepted")
+        })
+
+        it("Should buy the token on success", async () => {
+            const { statusCode } = await request(`${serverURL}/api/tokens/buy`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    meter_number: getMeterNumber(),
                     amount: 1000
                 }),
             });
@@ -50,15 +86,9 @@ describe("Token API", () => {
         })
     });
 
-    describe('Load token', function () {
-        it("Should load the token", async () => {
-            let token = await prisma.electricyToken.findFirst({
-                where: {
-                    status: "VALID"
-                }
-            });
+    describe('GET /api/tokens/load: loads token', function () {
 
-            if (!token) return;
+        it("Should fail on invalid token", async () => {
 
             const { statusCode, body } = await request(`${serverURL}/api/tokens/load`, {
                 method: "POST",
@@ -66,17 +96,59 @@ describe("Token API", () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    token: token.token
+                    token: "12"
                 }),
             });
 
-            expect(statusCode).toEqual(200)
+            let response = await body.json();
+
+            expect(statusCode).toEqual(400)
+            expect(response.message).toEqual("Invalid token")
+        })
+
+        it("Should fail on unknown token", async () => {
+
+            const { statusCode, body } = await request(`${serverURL}/api/tokens/load`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    token: "13432232"
+                }),
+            });
+
+            let response = await body.json();
+
+            expect(statusCode).toEqual(400)
+            expect(response.message).toEqual("Unknown token")
         })
     });
 
+    it("Should load the token if all data are passed", async () => {
+        let token = await prisma.electricyToken.findFirst({
+            where: {
+                status: "VALID"
+            }
+        });
+
+        if (!token) return;
+
+        const { statusCode } = await request(`${serverURL}/api/tokens/load`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                token: token.token
+            }),
+        });
+
+        expect(statusCode).toEqual(200)
+    })
 });
 
-const getToken = () => {
+const getMeterNumber = () => {
     return (Math.floor(Math.random() * (999999 - 100000)) +
         100000).toString();
 }
