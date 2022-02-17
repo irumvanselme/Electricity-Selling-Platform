@@ -41,8 +41,7 @@ describe("Token API", () => {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    meter_number: (Math.floor(Math.random() * (999999 - 100000)) +
-                        100000).toString(),
+                    meter_number: getToken(),
                     amount: 1000
                 }),
             });
@@ -53,6 +52,7 @@ describe("Token API", () => {
 
 });
 
-const getToken =  () => {
-    return
+const getToken = () => {
+    return (Math.floor(Math.random() * (999999 - 100000)) +
+        100000).toString();
 }
