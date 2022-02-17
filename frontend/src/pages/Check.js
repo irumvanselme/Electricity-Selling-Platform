@@ -24,14 +24,14 @@ export default function Check() {
         }
     }
     
-    return (<div>
+    return (<div id="_check_balance_page">
         <h1 className="text-3xl font-medium">Check Electricty</h1>
-        {error !== "" && <div title="Error" className="py-10 text-red-500 w-[400px]">{error}</div>}
-        {isSuccess && <div className="py-10 text-lg text-green-500 w-[400px]">Success you have electirity for {days} days</div>}
+        {error !== "" && <div title="Error" className="py-10 text-red-500 w-[400px]" id="ErrorMessage">{error}</div>}
+        {isSuccess && <div id="SuccessMessage" className="py-10 text-lg text-green-500 w-[400px]">Success you have electirity for {days} days</div>}
         <div>
-            <Input type="string" placeholder="Meter number" title="meter_number_input" data={{ st: meter_number, sts: setMeterNumber }}/>
+            <Input type="string" placeholder="Meter_number" title="meter_number_input" data={{ st: meter_number, sts: setMeterNumber }}/>
             
-            <Button title="Click to Check" onClick={checkElectricty}/>
+            <Button action="checkElectricity" title="Click to Check" onClick={checkElectricty}/>
         </div>
     </div>)
 }

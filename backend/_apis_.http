@@ -1,4 +1,4 @@
-GET http://localhost:8001/api/tokens
+GET http://localhost:8001/api/meters
 Accept: application/json
 
 ###
