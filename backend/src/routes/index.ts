@@ -8,7 +8,7 @@ export default function routes(app: Express) {
 	);
 
 	app.get("/api/tokens", (req, res) => getAllTokens(req, res));
-	app.get("/api/meters/by-number/{number}", (req, res) =>
+	app.get("/api/meters/by-number/:meter_number", (req, res) =>
 		findByMeterNumber(req, res)
 	);
 

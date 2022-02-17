@@ -6,7 +6,7 @@ export function responseMessage (
 }
 
 export function isMeterNumberValid (number: string): boolean {
-    if (!number || number.length != 6) return false;
+    if (number.length != 6) return false;
     else return true;
 }
 
