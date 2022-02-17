@@ -1,0 +1,15 @@
+Introduction
+
+this is the app to manage the products with model
+
+Product {
+    id,
+    name,
+    price,
+    description,
+    status
+}
+
+make backend app to make the crud of the app
+
+make the front-end page to manage products
