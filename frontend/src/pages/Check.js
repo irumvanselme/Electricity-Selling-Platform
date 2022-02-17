@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import axios from "axios";
 
 export default function Check() {
-    const [ meter_number, setMeterNumber ] = useState(1)
+    const [ meter_number, setMeterNumber ] = useState(0)
     
     const [ error, setErorr ] = useState("")
     const [ isSuccess, setIsSucess ] = useState(false)

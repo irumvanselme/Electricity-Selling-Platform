@@ -4,7 +4,7 @@ import Input from "../components/Input";
 import Button from "../components/Button";
 
 export default function LoadElectricty() {
-    const [ token, setToken ] = useState(1)
+    const [ token, setToken ] = useState(0)
     
     const [ error, setErorr ] = useState("")
     const [ isSuccess, setIsSucess ] = useState(false)

@@ -4,8 +4,8 @@ import Button from "../components/Button";
 import axios from "axios";
 
 export default function BuyElectricity() {
-    const [ meter_number, setMeterNumber ] = useState(1)
-    const [ amount, setAmount ] = useState(4)
+    const [ meter_number, setMeterNumber ] = useState(0)
+    const [ amount, setAmount ] = useState(0)
     const [ error, setErorr ] = useState("")
     const [ isSuccess, setIsSucess ] = useState(false)
     const [token, setToken] = useState()
@@ -28,7 +28,7 @@ export default function BuyElectricity() {
     
     return (<div>
         <h1 className="text-3xl font-medium">Buy Electricty</h1>
-        {error !== "" && <div className="py-10 text-red-500">{error}</div>}
+        {error !== "" && <div className="py-10 text-red-500 w-[400px]">{error}</div>}
         {isSuccess && <div className="py-10 text-lg text-green-500">Sucessfully buyed electricity with token :{token} ..</div>}
         <div>
             <Input type="number" placeholder="Meter number" data={{ st: meter_number, sts: setMeterNumber }}/>
