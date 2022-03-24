@@ -1,3 +1,3 @@
 FROM keinos/sqlite3
 
-EXPOSE 3306
+EXPOSE 8569
