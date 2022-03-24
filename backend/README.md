@@ -2,17 +2,17 @@
 
 ## Getting started
 
-- Clone the repository:
-- Install the dependencies:
-- Run this command
+-   Clone the repository:
+-   Install the dependencies:
+-   Run this command
 
 ```bash
-pnpm install
+yarn install
 npx prisma migrate dev --name init
 ```
 
-- For running tests you can use the following command:
+-   For running tests you can use the following command:
 
 ```bash
-   pnpm test:watch
+   yarn test:watch
 ```
